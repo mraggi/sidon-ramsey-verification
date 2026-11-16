@@ -33,6 +33,10 @@ The verifications have not been formalized in a proof assistant.
 
 The two-minute figure for the full upper-bound check is for a 24-core Intel Core Ultra 9 285K.
 
+## Acknowledgments
+
+This work was supported by UNAM-PAPIIT project IN114726.
+
 ## License
 
 MIT (see `LICENSE`), covering the code and the data files. The colourings of Heule (`vdw/heule_*.cert`) are his, from the repository cited in the paper.
