@@ -8,7 +8,7 @@ authors:
     given-names: "Miguel"
   - family-names: "Garibay"
     given-names: "Tania"
-version: "1.0"
+version: "1.1"
 date-released: "2026-11-24"
 license: MIT
 repository-code: "https://github.com/mraggi/sidon-ramsey-verification"
