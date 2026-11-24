@@ -7,7 +7,8 @@ verify_windows.py checks that each stored (u, t, m) gives a Sidon k-partition of
 This script checks the two other columns of the table of windows (Appendix B):
 
   * m is the longest window over all affine images x -> u*x + t (u a unit of Z_v);
-  * m_0 is the largest m with k*m*(m-1) < 2v (Proposition 4.3).
+  * m_0, the largest m <= k with k*m*(m-1) < 2v, is at most m, as Proposition 4.3
+    guarantees.
 
 Reading the image x -> u*x + t from s = 1 colours x by the class of u*x + t, so the window
 is the run of residues t+u, t+2u, ..., t+mu. For a fixed u, changing t only shifts the
@@ -67,13 +68,13 @@ def main():
     bad = 0
     for e in rows:
         k, v, m = e["k"], e["v"], e["m"]
-        m0 = max(n for n in range(1, v) if k * n * (n - 1) < 2 * v)
+        m0 = max(n for n in range(1, k + 1) if k * n * (n - 1) < 2 * v)
         mx = longest_window(e)
-        ok = mx == m
+        ok = mx == m and m0 <= m
         bad += not ok
         print(f"{'OK  ' if ok else 'FAIL'} {e['construction']:6} k={k:2} v={v:4} "
               f"m={m:2} longest={mx:2} m0={m0:2}")
-    print(f"{len(rows) - bad} of {len(rows)} windows are the longest")
+    print(f"{len(rows) - bad} of {len(rows)} windows are the longest, with m0 <= m")
     raise SystemExit(1 if bad else 0)
 
 
