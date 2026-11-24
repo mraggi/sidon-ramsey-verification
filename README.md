@@ -12,6 +12,7 @@ The verifications have not been formalized in a proof assistant.
 |---|---|---|
 | `python3 verify.py --lower-only` | Each partition in `lower_partitions.json` (the Sidon-Ramsey lower bounds SR(8) to SR(20) of Table 1): it partitions `[1, n]` into at most `k` parts, each part has all pair sums distinct and all positive differences distinct, and its SHA-256 matches the stored one. | seconds |
 | `python3 verify_windows.py` | The periodic-window bounds in `windows.json` (Singer and Ruzsa constructions): the classes are Sidon modulo `v` and partition `Z_v`, and the colouring of `[v+m]` they induce has Sidon classes. Prints SR(k) >= v+m+1 for every row. | under a second |
+| `python3 check_windows_max.py` | For every row of `windows.json`, that `m` is the longest window over all affine images `x -> u*x + t`, and the value `m_0` of the averaging bound (the columns of the table of windows that `verify_windows.py` does not check). | about 40 seconds |
 | `python3 vdw/verify.py` | The van der Waerden colourings in `vdw/certificates.json` have no monochromatic 3-term progression; the two covers of `Z_19` and `Z_37`; their products with Heule's colourings of `[170]` and `[75]` are the stored colourings of `[3230]` and `[2775]`; the facts about `Z_19` and `Z_27` used in the paper; and `r_3(Z_q)` for `q <= 20`. Ends with `ALL OK`. | under a second |
 | `python3 verify.py --threads N` | Everything in the first row, plus the upper bound SR(9) <= 109: regenerates the complete lists of 13- and 14-element Sidon subsets of `[109]` and the four lists of 12-element subsets needed in the proof (C++ program `enumerate_sums.cpp`), and checks the integer weights in `certificates.json` against every set of the family, the disjoint pairs and the reflection identities. Intermediate files go in `verification/` (not tracked). | about two minutes on a 24-core machine |
 | `g++ -O2 -std=c++17 vdw/r3_cyclic.cpp -o r3 && ./r3 lo hi` | Exhaustive computation of `r_3(Z_q)` for `lo <= q <= hi` (the values for `21 <= q <= 44` are stored in `vdw/r3_cyclic.json`). | seconds |
@@ -21,7 +22,7 @@ The verifications have not been formalized in a proof assistant.
 - `verify.py`, `enumerate_sums.cpp`: the upper bound SR(9) <= 109 and the lower-bound partitions.
 - `certificates.json`: integer weights (with their common denominator) and the six 13-element sets (`large_sets`) used in the upper-bound proof.
 - `lower_partitions.json`: the strongest verified partition for each number of colours.
-- `windows.json`, `verify_windows.py`: periodic-window bounds for more colours.
+- `windows.json`, `verify_windows.py`, `check_windows_max.py`: periodic-window bounds for more colours, and the maximality of each window.
 - `vdw/`: van der Waerden colourings (`certificates.json`), the covers of `Z_19` and `Z_37`, Heule's certificates (`heule_W_5_3_170.cert`, `heule_W_4_3_37.cert`) and the `r_3(Z_q)` computation.
 
 ## Notes
