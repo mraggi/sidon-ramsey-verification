@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "Verification code and data for the paper below. If you use them, please cite the paper."
+title: "Verification code for \"Bounds for Sidon-Ramsey and van der Waerden numbers\""
+authors:
+  - family-names: "Roldán"
+    given-names: "Edgardo"
+  - family-names: "Raggi"
+    given-names: "Miguel"
+  - family-names: "Garibay"
+    given-names: "Tania"
+version: "1.0"
+date-released: "2026-11-24"
+license: MIT
+repository-code: "https://github.com/mraggi/sidon-ramsey-verification"
